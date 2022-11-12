@@ -55,7 +55,10 @@ int main() {
     if (b.y < d.y)
         chieurong -= d.y - b.y;
     
-    printf("%d", chieudai*chieurong);
+    if (chieudai*chieurong > 0)
+        printf("%d", chieudai*chieurong);
+    else
+        printf("0");
 
     return 0;
 }
