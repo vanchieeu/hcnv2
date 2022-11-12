@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 void swap(int *a, int *b) {
     int temp = *a;
@@ -22,6 +23,16 @@ void checkToaDo(ToaDo *a, ToaDo *b, ToaDo *c, ToaDo *d) {
         swap(&c->y, &d->y); 
 }
 
+void checkToaDo2(ToaDo *a, ToaDo *b, ToaDo *c, ToaDo *d) {
+    if (pow(a->x-b->x, 2) + pow(a->y-b->y, 2) < pow(c->x-d->x, 2) + pow(c->y-d->y, 2)) {
+        swap(&a->x, &c->x);
+        swap(&a->y, &c->y);
+
+        swap(&b->x, &d->x);
+        swap(&b->y, &d->y);
+    }
+}
+
 int main() {
     ToaDo a, b, c, d;
 
@@ -30,7 +41,7 @@ int main() {
 
     checkToaDo(&a, &b, &c, &d);
 
-    
+    checkToaDo2(&a, &b, &c, &d);
 
     return 0;
 }
