@@ -1,36 +1,30 @@
 #include <stdio.h>
 #include <math.h>
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
 typedef struct ToaDo {
     int x, y;
 } ToaDo;
 
-void checkToaDo(ToaDo *a, ToaDo *b, ToaDo *c, ToaDo *d) {
-    if (a->x < b->x)
-        swap(&a->x, &b->x);
-    if (a->y < b->y)
-        swap(&a->y, &b->y);
-
-    if (c->x < d->x)
-        swap(&c->x, &d->x);
-    if (c->y < d->y)
-        swap(&c->y, &d->y); 
+int minNumber(int a, int b, int c, int d) {
+    int min = a;
+    if (min > b)
+        min = b;
+    if (min > c)
+        min = c;
+    if (min > d)
+        min = d;
+    return min;
 }
 
-void checkToaDo2(ToaDo *a, ToaDo *b, ToaDo *c, ToaDo *d) {
-    if (pow(a->x-b->x, 2) + pow(a->y-b->y, 2) < pow(c->x-d->x, 2) + pow(c->y-d->y, 2)) {
-        swap(&a->x, &c->x);
-        swap(&a->y, &c->y);
-
-        swap(&b->x, &d->x);
-        swap(&b->y, &d->y);
-    }
+int maxNumber(int a, int b, int c, int d) {
+    int max = a;
+    if (max < b)
+        max = b;
+    if (max < c)
+        max = c;
+    if (max < d)
+        max = d;
+    return max;
 }
 
 int main() {
@@ -39,24 +33,11 @@ int main() {
     scanf("%d %d %d %d", &a.x, &a.y, &b.x, &b.y);
     scanf("%d %d %d %d", &c.x, &c.y, &d.x, &d.y);
 
-    checkToaDo(&a, &b, &c, &d);
+    long long chieudai = abs(a.x-b.x) + abs(c.x-d.x) - (maxNumber(a.x, b.x, c.x, d.x) - minNumber(a.x, b.x, c.x, d.x));
+    long long chieurong = abs(a.y-b.y) + abs(c.y-d.y) - (maxNumber(a.y, b.y, c.y, d.y) - minNumber(a.y, b.y, c.y, d.y));
 
-    checkToaDo2(&a, &b, &c, &d);
-
-    int chieudai = a.x - b.x;
-    if (a.x > c.x)
-        chieudai -= a.x - c.x;
-    if (b.x < d.x)
-        chieudai -= d.x - b.x;
-
-    int chieurong = a.y - b.y;
-    if (a.y > c.y)
-        chieurong -= a.y - c.y;
-    if (b.y < d.y)
-        chieurong -= d.y - b.y;
-    
     if (chieudai*chieurong > 0)
-        printf("%d", chieudai*chieurong);
+        printf("%lld", chieudai*chieurong);
     else
         printf("0");
 
