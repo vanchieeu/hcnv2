@@ -43,5 +43,19 @@ int main() {
 
     checkToaDo2(&a, &b, &c, &d);
 
+    int chieudai = a.x - b.x;
+    if (a.x > c.x)
+        chieudai -= a.x - c.x;
+    if (b.x < d.x)
+        chieudai -= d.x - b.x;
+
+    int chieurong = a.y - b.y;
+    if (a.y > c.y)
+        chieurong -= a.y - c.y;
+    if (b.y < d.y)
+        chieurong -= d.y - b.y;
+    
+    printf("%d", chieudai*chieurong);
+
     return 0;
 }
